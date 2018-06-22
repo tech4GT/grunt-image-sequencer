@@ -40,7 +40,7 @@ module.exports = function(grunt) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
           return false;
         } else {
-          shjs.exec(`sequencer -i ${filepath} -s '${options.steps}' -o ${f.dest} -c '${options.config}' --basic`)
+          shjs.exec(`sequencer -i '${filepath}' -s '${options.steps}' -o '${f.dest}' -c '${options.config}' --basic`)
           return true;
         }
       });

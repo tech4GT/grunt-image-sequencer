@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     image_sequencer: {
         options: {
-          steps: 'invert brightness',
+          steps: 'brightness',
           config: {
             brightness: 50
           }
