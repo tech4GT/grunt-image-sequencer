@@ -21,12 +21,15 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     image_sequencer: {
         options: {
-          steps: 'invert'
+          steps: 'invert brightness',
+          config: {
+            brightness: 50
+          }
         },
         files: [
           {dest: 'tmp',src: ['test/*.png']}
         ]
-    },
+    }
   });
 
   // Actually load this plugin's task(s).

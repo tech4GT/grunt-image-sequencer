@@ -1,9 +1,13 @@
 # grunt-image-sequencer
 
-> Integrates Image Sequencer Library into Grunt
+> Grunt Integration for Image Sequencer Library. See https://github.com/image-sequencer
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
+You should also have image-sequencer installed
+```shell
+npm install -g image-sequencer
+```
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -26,59 +30,48 @@ In your project's Gruntfile, add a section named `image_sequencer` to the data o
 grunt.initConfig({
   image_sequencer: {
     options: {
-      // Task-specific options go here.
+      steps: /*A string containing space separated steps*/,
+      config: /*Inputs for steps(optional)*/
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+    files: [
+      {
+        src: [/*Array of source files you wish to include*/],
+        dest: /*Destination path for the exported images*/
+      }
+    ]
   },
 });
 ```
 
 ### Options
 
-#### options.separator
+#### options.steps
 Type: `String`
-Default value: `',  '`
+Default value: `""`
 
-A string value that is used to do something with whatever.
+A string which defines the sequence that should be applied to images
+Example:
+```js
+"invert brightness ndvi"
+```
+###options.config
+Type: 'Object'
+Default value: `{}`
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
+An object which contains the inputs for steps, if some are missing they can be entered at runtime
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
 ```js
 grunt.initConfig({
   image_sequencer: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  image_sequencer: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+        options: {
+          steps: 'invert'
+        },
+        files: [
+          {dest: 'dist',src: ['src/*.png','src/*.jpg']}
+        ]
+    }
 });
 ```
 

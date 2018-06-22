@@ -18,8 +18,11 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      steps: 'ndvi'
+      steps: 'ndvi',
+      config: {}
     });
+
+    options.config = JSON.stringify(options.config);
 
     // Iterate over all specified file groups.
     this.data.forEach(function(f) {
@@ -30,7 +33,6 @@ module.exports = function(grunt) {
           filepaths.push(expandedFilePath);
         });
       });
-      console.log(filepaths)
 
       var src = filepaths.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
@@ -38,10 +40,10 @@ module.exports = function(grunt) {
           grunt.log.warn('Source file "' + filepath + '" not found.');
           return false;
         } else {
-          shjs.exec(`sequencer -i ${filepath} -s ${options.steps} -o ${f.dest} --basic`)
+          shjs.exec(`sequencer -i ${filepath} -s '${options.steps}' -o ${f.dest} -c '${options.config}' --basic`)
           return true;
         }
-      })
+      });
 
       // Print a success message.
       grunt.log.writeln(`Succesfully sequenced!!`);
