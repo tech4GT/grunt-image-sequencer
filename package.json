@@ -36,7 +36,6 @@
     "gruntplugin"
   ],
   "dependencies": {
-    "image-sequencer": "^2.1.0",
     "shelljs": "^0.8.2"
   }
 }
