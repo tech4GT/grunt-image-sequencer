@@ -1,7 +1,7 @@
 {
   "name": "grunt-image-sequencer",
   "description": "Integrates Image Sequencer Library into Grunt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/tech4GT/grunt-image-sequencer",
   "author": {
     "name": "tech4GT",
